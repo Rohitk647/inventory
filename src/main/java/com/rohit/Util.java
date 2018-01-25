@@ -1,6 +1,6 @@
 package com.rohit;
 
-import com.rohit.InventoryService.InventoryService;
+import com.rohit.inventoryService.InventoryService;
 
 /**
  * Created by rohit on 1/24/2018.
@@ -21,6 +21,7 @@ public class Util {
             inventoryService.reduceQuantity(operation[1],operation[2]);
         }
         else if(operation[0].equals("delete")){
+            inventoryService.delProdCost(operation[1]);
             inventoryService.deleteProduct(operation[1]);
         }
         else if (operation[0].equals("report")){inventoryService.report();}

@@ -1,4 +1,4 @@
-package com.rohit.Models;
+package com.rohit.models;
 
 /**
  * Created by rohit on 1/24/2018.
@@ -8,7 +8,7 @@ public class Product implements  Comparable<Product>{
      private String productName;
      private double costPrice;
      private double sellingPrice;
-     private int quantity;
+     private long quantity;
 
     public String getProductName() {
         return productName;
@@ -34,11 +34,11 @@ public class Product implements  Comparable<Product>{
         this.sellingPrice = sellingPrice;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
@@ -57,7 +57,7 @@ public class Product implements  Comparable<Product>{
         return productName.hashCode();
     }
 
-    public Product(String productName, double costPrice, double sellingPrice, int quantity ){
+    public Product(String productName, double costPrice, double sellingPrice, long quantity ){
          this.productName = productName;
          this.costPrice=costPrice;
          this.quantity=quantity;
@@ -67,6 +67,7 @@ public class Product implements  Comparable<Product>{
 
      public Product(){}
 
+// Comparing entries into treeset
 
     public int compareTo(Product o) {
         return this.getProductName().compareTo(o.getProductName());}
