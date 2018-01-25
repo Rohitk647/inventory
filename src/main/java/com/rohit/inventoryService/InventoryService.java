@@ -14,10 +14,10 @@ public class InventoryService {
 
 
 
-    static Set<Product> productset=new TreeSet<Product>();
+    private static Set<Product> productset=new TreeSet<Product>();
     private long noOfProducts;
     private double profit=0;
-    static long previousProfit=0;
+    private static long previousProfit=0;
 
     /**
      *   Adds products to the set
@@ -93,7 +93,7 @@ public class InventoryService {
             i=i+((product.getCostPrice())*(product.getQuantity()));
             a=a+(((long)product.getSellingPrice())-(long) product.getCostPrice())*product.getQuantity();
             b=b+(long)getProfit();
-            System.out.println(product.getProductName()+"        " +product.getCostPrice()+"         " +product.getSellingPrice()+"          " +product.getQuantity()+"           " + ((product.getCostPrice())*(product.getQuantity())));
+            System.out.println(product.getProductName()+"        " +product.getCostPrice()+"         " +product.getSellingPrice()+"          " +product.getQuantity()+"          " + ((product.getCostPrice())*(product.getQuantity())));
 
         }
         System.out.println("-----------------------------------------------------------------------------------------------------");
@@ -117,7 +117,7 @@ public class InventoryService {
      *  To get the required product by given name
      */
 
-    public Product getProductByName(String productName)
+    private Product getProductByName(String productName)
     {
         Product matchproduct=null;
         for(Product product:productset){
