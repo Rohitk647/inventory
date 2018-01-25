@@ -48,6 +48,7 @@ updateSell Tab01 2
 
 report
 
+OUTPUT:
 
 Inventory report
 
