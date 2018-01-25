@@ -7,6 +7,7 @@ import com.rohit.inventoryService.InventoryService;
  */
 
 public class Util {
+
     public void option(String option)
     {
         InventoryService inventoryService=new InventoryService();
@@ -15,7 +16,7 @@ public class Util {
         if(operation[0].equals("create")){
             inventoryService.createProduct(operation[1],operation[2],operation[3]);
         }
-        else if(operation[0].equals("updateby")){
+        else if(operation[0].equals("updatebuy")){
            inventoryService.increaseQuantity(operation[1],operation[2]);
         }
         else if(operation[0].equals("updatesell")){
@@ -26,7 +27,9 @@ public class Util {
             inventoryService.deleteProduct(operation[1]);
         }
         else if (operation[0].equals("report")){inventoryService.report();}
-        else{}
+        else{
+            System.out.println("please enter valid option");
+        }
 
     }
 }

@@ -16,7 +16,11 @@ public class InventoryService {
 
     private static Set<Product> productset=new TreeSet<Product>();
     private long noOfProducts;
-    private double profit=0;
+    private static double costPrice;
+
+
+
+    private static double profit;
     private static long previousProfit=0;
 
     /**
@@ -40,9 +44,12 @@ public class InventoryService {
 
     public boolean deleteProduct(String productName)
     {
-        Product matchproduct=getProductByName(productName);
-        productset.remove(matchproduct);
-        return true;
+        if(productName == null){return false;}
+        else {
+            Product matchproduct = getProductByName(productName);
+            productset.remove(matchproduct);
+            return true;
+        }
     }
 
     /**
@@ -50,13 +57,15 @@ public class InventoryService {
      */
 
     public boolean increaseQuantity(String productName,String quantity){
-
-        Product matchproduct=getProductByName(productName);
-        setNoOfProducts(Integer.parseInt(quantity));
-        deleteProduct(matchproduct.getProductName());
-        setNoOfProducts(getNoOfProducts()+matchproduct.getQuantity());
-        createProduct(matchproduct.getProductName(),String.valueOf(matchproduct.getCostPrice()),String.valueOf(matchproduct.getSellingPrice()));
-        return true;
+        if(productName == null||quantity ==null){return false;}
+        else {
+            Product matchproduct = getProductByName(productName);
+            setNoOfProducts(Integer.parseInt(quantity));
+            deleteProduct(matchproduct.getProductName());
+            setNoOfProducts(getNoOfProducts() + matchproduct.getQuantity());
+            createProduct(matchproduct.getProductName(), String.valueOf(matchproduct.getCostPrice()), String.valueOf(matchproduct.getSellingPrice()));
+            return true;
+        }
     }
 
     /**
@@ -64,12 +73,16 @@ public class InventoryService {
      */
 
     public boolean reduceQuantity(String productName,String quantity){
-        Product matchproduct=getProductByName(productName);
-        setNoOfProducts(Integer.parseInt(quantity));
-        deleteProduct(matchproduct.getProductName());
-        setNoOfProducts(matchproduct.getQuantity()- getNoOfProducts());
-        createProduct(matchproduct.getProductName(),String.valueOf(matchproduct.getCostPrice()),String.valueOf(matchproduct.getSellingPrice()));
-        return true;
+        if(productName == null||quantity ==null){return false;}
+        else {
+            Product matchproduct = getProductByName(productName);
+            calculateProfit(productName, quantity);
+            setNoOfProducts(Integer.parseInt(quantity));
+            deleteProduct(matchproduct.getProductName());
+            setNoOfProducts(matchproduct.getQuantity() - getNoOfProducts());
+            createProduct(matchproduct.getProductName(), String.valueOf(matchproduct.getCostPrice()), String.valueOf(matchproduct.getSellingPrice()));
+            return true;
+        }
     }
 
     /**
@@ -91,11 +104,12 @@ public class InventoryService {
         for(Product product:printReport)
         {
             i=i+((product.getCostPrice())*(product.getQuantity()));
-            a=a+(((long)product.getSellingPrice())-(long) product.getCostPrice())*product.getQuantity();
-            b=b+(long)getProfit();
+//            a=a+(((long)product.getSellingPrice())-(long) product.getCostPrice())*product.getQuantity();
             System.out.println(product.getProductName()+"        " +product.getCostPrice()+"         " +product.getSellingPrice()+"          " +product.getQuantity()+"          " + ((product.getCostPrice())*(product.getQuantity())));
-
         }
+        a=a+(long)getProfit();
+        b=b+(long)getCostPrice();
+        System.out.println(a+" "+b);
         System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("Total Value                                             "+i);
         System.out.println("Profit                                                  "+(a-b));
@@ -109,7 +123,7 @@ public class InventoryService {
         }
         System.out.println();
         previousProfit=a-b;
-        setProfit(0);
+        setCostPrice(0);
     }
 
 
@@ -137,14 +151,18 @@ public class InventoryService {
         Product matchproduct=getProductByName(productName);
         if(matchproduct.getQuantity()==0)
         {
-            setProfit(matchproduct.getCostPrice()+getProfit());
+            setCostPrice(matchproduct.getCostPrice()+getCostPrice());
         }
         else
         {
-            setProfit(matchproduct.getCostPrice() * matchproduct.getQuantity() + getProfit());
+            setCostPrice(matchproduct.getCostPrice() * matchproduct.getQuantity() + getCostPrice());
         }
-        System.out.println(getProfit());
-        return getProfit();
+        return getCostPrice();
+    }
+
+    public void calculateProfit(String productName,String quantity){
+        Product matchproduct=getProductByName(productName);
+        setProfit(((matchproduct.getSellingPrice()- matchproduct.getCostPrice())*Integer.parseInt(quantity))+getProfit());
     }
 
 
@@ -163,11 +181,19 @@ public class InventoryService {
     public void setNoOfProducts(long noOfProducts) {
         this.noOfProducts = noOfProducts;
     }
-    public double getProfit() {
+    public static double getProfit() {
         return profit;
     }
 
-    public void setProfit(double profit) {
-        this.profit = profit;
+    public static void setProfit(double profit) {
+        InventoryService.profit = profit;
+    }
+
+    public double getCostPrice() {
+        return costPrice;
+    }
+
+    public void setCostPrice(double costPrice) {
+        this.costPrice = costPrice;
     }
 }
