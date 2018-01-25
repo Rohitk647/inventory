@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- *This class implements the Crud operations and report generation
+ *This class implements the Crud operations and generates inventory report
  * Created by rohit on 1/24/2018.
  */
 
@@ -17,6 +17,7 @@ public class InventoryService {
     static Set<Product> productset=new TreeSet<Product>();
     private long noOfProducts;
     private double profit=0;
+    static long previousProfit=0;
 
     /**
      *   Adds products to the set
@@ -81,18 +82,36 @@ public class InventoryService {
         double i=0;
         long a=0;
         long b=0;
+
+        System.out.println("           "+"INVENTORY REPORT");
+        System.out.println("Item Name"+"    "+ "Bought At"+"    "+"Sold At"+"   "+"AvailableQty"+"  "+"Value");
+        System.out.println("---------"+"    "+ "---------"+"    "+"-------"+"   "+"------------"+"  "+"-----");
+
+
         for(Product product:printReport)
         {
-            System.out.println(product.getProductName()+" "+product.getCostPrice()+" "+product.getSellingPrice()+" "+product.getQuantity()+" "+((product.getCostPrice())*(product.getQuantity())));
             i=i+((product.getCostPrice())*(product.getQuantity()));
             a=a+(((long)product.getSellingPrice())-(long) product.getCostPrice())*product.getQuantity();
             b=b+(long)getProfit();
-            System.out.println(b);
+            System.out.println(product.getProductName()+"        " +product.getCostPrice()+"         " +product.getSellingPrice()+"          " +product.getQuantity()+"           " + ((product.getCostPrice())*(product.getQuantity())));
+
         }
-        System.out.println("profit"+(a-b));
-        System.out.println("Total Value of Products "+i);
-        i=0;a=0;b=0;setProfit(0);
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+        System.out.println("Total Value                                             "+i);
+        System.out.println("Profit                                                  "+(a-b));
+        if(previousProfit==0)
+        {
+            System.out.println("Profit from previous report                             "+0.0);
+        }
+        else
+        {
+        System.out.println("Profit from previous report                             "+(previousProfit-(a-b)));
+        }
+        System.out.println();
+        previousProfit=a-b;
+        setProfit(0);
     }
+
 
     /**
      *  To get the required product by given name
@@ -127,7 +146,6 @@ public class InventoryService {
         System.out.println(getProfit());
         return getProfit();
     }
-
 
 
 
