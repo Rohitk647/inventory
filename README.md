@@ -48,3 +48,4 @@ Tab01        57.0         84.98          96          5472.0
 Total Value                                             10317.06
 Profit                                                  4288
 Profit from previous report                             0.0
+
