@@ -74,14 +74,11 @@ public class InventoryService {
          {
              System.out.println(product.getProductName()+" "+product.getCostPrice()+" "+product.getSellingPrice()+" "+product.getQuantity()+" "+((product.getCostPrice())*(product.getQuantity())));
              i=i+((product.getCostPrice())*(product.getQuantity()));
-             a=a+(Math.round(product.getSellingPrice())- Math.round(product.getCostPrice())*(product.getQuantity()));
-             System.out.println(a);
-//             b=b+product.getQuantity();
-//             System.out.println(b);
+             a=a+(((long)product.getSellingPrice())-(long) product.getCostPrice())*product.getQuantity();
+             b=b+(long)getProfit();
+             System.out.println(b);
          }
-//            System.out.println((b*a));
-
-
+            System.out.println("profit"+(a-b));
             System.out.println("Total Value of Products "+i);
             i=0;a=0;b=0;setProfit(0);
         }
