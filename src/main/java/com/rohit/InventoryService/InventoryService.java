@@ -9,10 +9,10 @@ import java.util.TreeSet;
  * Created by rohit on 1/24/2018.
  */
 public class InventoryService {
-//    to store the products and print them in sorted order
+//    To store the products and print them in sorted order
     static Set<Product> productset=new TreeSet<Product>();
-
     private int noOfProducts;
+    private double profit=0;
 
 //    To add product
 
@@ -29,31 +29,37 @@ public class InventoryService {
 
 
 //   To delete product
+
     public boolean deleteProduct(String productName)
     {
-        Product matchproduct=null;
-        for(Product product:productset){
-            if(product.getProductName().equals(productName)){
-                matchproduct=product;
-            }
-        }
+        Product matchproduct=getProductByName(productName);
         productset.remove(matchproduct);
         return true;
     }
-    public boolean updateQuantity(String productName,String quantity){
-        Product matchproduct=null;
-        setNoOfProducts(Integer.parseInt(quantity));
-        for(Product product:productset){
-            if(product.getProductName().equals(productName)){
-                matchproduct=product;
-            }
-        }
+
+//    To increase te quantity
+
+    public boolean increaseQuantity(String productName,String quantity){
+
+        Product matchproduct=getProductByName(productName);
         deleteProduct(matchproduct.getProductName());
         setNoOfProducts(getNoOfProducts()+matchproduct.getQuantity());
         createProduct(matchproduct.getProductName(),String.valueOf(matchproduct.getCostPrice()),String.valueOf(matchproduct.getSellingPrice()));
         return true;
     }
 
+//    To reduce the quantity
+
+    public boolean reduceQuantity(String productName,String quantity){
+        Product matchproduct=getProductByName(productName);
+        setNoOfProducts(Integer.parseInt(quantity));
+        deleteProduct(matchproduct.getProductName());
+        setNoOfProducts(matchproduct.getQuantity()- getNoOfProducts());
+        createProduct(matchproduct.getProductName(),String.valueOf(matchproduct.getCostPrice()),String.valueOf(matchproduct.getSellingPrice()));
+        return true;
+    }
+
+// Generate report
 
     public void report()
         {
@@ -62,8 +68,25 @@ public class InventoryService {
          for(Product product:printReport){
              System.out.println(product.getProductName()+" "+product.getCostPrice()+" "+product.getSellingPrice()+" "+product.getQuantity());
          }
-
         }
+
+// get the product by productName
+
+    public Product getProductByName(String productName)
+    {
+            Product matchproduct=null;
+            for(Product product:productset){
+                if(product.getProductName().equals(productName)){
+                    matchproduct=product;
+                }
+            }
+            return  matchproduct;
+        }
+
+//   calculating Profit
+
+//        getters and setters
+
     public Set<Product> getProductset() {
         return productset;
     }
@@ -77,5 +100,12 @@ public class InventoryService {
 
     public void setNoOfProducts(int noOfProducts) {
         this.noOfProducts = noOfProducts;
+    }
+    public double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(double profit) {
+        this.profit = profit;
     }
 }

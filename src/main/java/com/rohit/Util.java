@@ -15,9 +15,11 @@ public class Util {
             inventoryService.createProduct(operation[1],operation[2],operation[3]);
         }
         else if(operation[0].equals("updateby")){
-           inventoryService.updateQuantity(operation[1],operation[2]);
+           inventoryService.increaseQuantity(operation[1],operation[2]);
         }
-        else if(operation[0].equals("updatesell")){}
+        else if(operation[0].equals("updatesell")){
+            inventoryService.reduceQuantity(operation[1],operation[2]);
+        }
         else if(operation[0].equals("delete")){
             inventoryService.deleteProduct(operation[1]);
         }
