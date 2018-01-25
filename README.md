@@ -30,15 +30,15 @@ create Med01 30.63 34.29
 
 create Tab01 57.00 84.98
 
-updateBy Tab01 100
+updateBuy Tab01 100
 
 updateSell Tab01 2
 
-updateBy Food01 500
+updateBuy Food01 500
 
-updateBy Book01 100
+updateBuy Book01 100
 
-updateBy Med01 100
+updateBuy Med01 100
 
 updateSell Food01 1
 
@@ -47,3 +47,20 @@ updateSell Food01 1
 updateSell Tab01 2
 
 report
+
+EXPECTED OUTPUT:
+
+```
+
+	INVENTORY REPORT
+Item Name 	Bought At    	Sold At       	AvailableQty	Value
+
+Book01    	10.50          	13.79               	100    	1050.00
+Food01     	1.47           	3.98               	    498     732.06
+Med01     	30.63          	34.29               	100    	3063.00
+Tab01     	57.00          	84.98                	96    	5472.00
+---------------------------------------------------------------------------
+Total value                                                     	10317.06
+Profit since previous report                                      	0.0
+
+```

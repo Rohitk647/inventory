@@ -104,7 +104,6 @@ public class InventoryService {
         for(Product product:printReport)
         {
             i=i+((product.getCostPrice())*(product.getQuantity()));
-//            a=a+(((long)product.getSellingPrice())-(long) product.getCostPrice())*product.getQuantity();
             System.out.println(product.getProductName()+"        " +product.getCostPrice()+"         " +product.getSellingPrice()+"          " +product.getQuantity()+"          " + ((product.getCostPrice())*(product.getQuantity())));
         }
         a=a+(long)getProfit();
@@ -112,7 +111,6 @@ public class InventoryService {
         System.out.println(a+" "+b);
         System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("Total Value                                             "+i);
-        System.out.println("Profit                                                  "+(a-b));
         if(previousProfit==0)
         {
             System.out.println("Profit from previous report                             "+0.0);
