@@ -6,18 +6,21 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
+ *This class implements the Crud operations and report generation
  * Created by rohit on 1/24/2018.
  */
 
 public class InventoryService {
 
-//    To store the products and print them in sorted order
+
 
     static Set<Product> productset=new TreeSet<Product>();
     private long noOfProducts;
     private double profit=0;
 
-//    To add product
+    /**
+     *   Adds products to the set
+     */
 
     public boolean createProduct(String productName,String costPrice,String sellingPrice) {
 
@@ -30,7 +33,9 @@ public class InventoryService {
         }
     }
 
-//   To delete product
+    /**
+     *  Deletes products from the set
+     */
 
     public boolean deleteProduct(String productName)
     {
@@ -39,7 +44,9 @@ public class InventoryService {
         return true;
     }
 
-//    To increase the quantity
+    /**
+     *  Increases the quantity of the products
+     */
 
     public boolean increaseQuantity(String productName,String quantity){
 
@@ -51,7 +58,9 @@ public class InventoryService {
         return true;
     }
 
-//    To reduce the quantity
+    /**
+     *  Reduces the quantity of the products
+     */
 
     public boolean reduceQuantity(String productName,String quantity){
         Product matchproduct=getProductByName(productName);
@@ -62,41 +71,47 @@ public class InventoryService {
         return true;
     }
 
-// Generate report
+    /**
+     *  Generating report and calculating profit
+     */
 
     public void report()
+    {
+        Set<Product> printReport=getProductset();
+        double i=0;
+        long a=0;
+        long b=0;
+        for(Product product:printReport)
         {
-         Set<Product> printReport=getProductset();
-         double i=0;
-         long a=0;
-         long b=0;
-         for(Product product:printReport)
-         {
-             System.out.println(product.getProductName()+" "+product.getCostPrice()+" "+product.getSellingPrice()+" "+product.getQuantity()+" "+((product.getCostPrice())*(product.getQuantity())));
-             i=i+((product.getCostPrice())*(product.getQuantity()));
-             a=a+(((long)product.getSellingPrice())-(long) product.getCostPrice())*product.getQuantity();
-             b=b+(long)getProfit();
-             System.out.println(b);
-         }
-            System.out.println("profit"+(a-b));
-            System.out.println("Total Value of Products "+i);
-            i=0;a=0;b=0;setProfit(0);
+            System.out.println(product.getProductName()+" "+product.getCostPrice()+" "+product.getSellingPrice()+" "+product.getQuantity()+" "+((product.getCostPrice())*(product.getQuantity())));
+            i=i+((product.getCostPrice())*(product.getQuantity()));
+            a=a+(((long)product.getSellingPrice())-(long) product.getCostPrice())*product.getQuantity();
+            b=b+(long)getProfit();
+            System.out.println(b);
         }
+        System.out.println("profit"+(a-b));
+        System.out.println("Total Value of Products "+i);
+        i=0;a=0;b=0;setProfit(0);
+    }
 
-// get the product by productName
+    /**
+     *  To get the required product by given name
+     */
 
     public Product getProductByName(String productName)
     {
-            Product matchproduct=null;
-            for(Product product:productset){
-                if(product.getProductName().equals(productName)){
-                    matchproduct=product;
-                }
+        Product matchproduct=null;
+        for(Product product:productset){
+            if(product.getProductName().equals(productName)){
+                matchproduct=product;
             }
-            return matchproduct;
+        }
+        return matchproduct;
     }
 
-//        calculating costprice of deleted products
+    /**
+     *  This method calculates the cost price of the deleted products
+     */
 
     public double delProdCost(String productName){
 
@@ -105,7 +120,7 @@ public class InventoryService {
         {
             setProfit(matchproduct.getCostPrice()+getProfit());
         }
-            else
+        else
         {
             setProfit(matchproduct.getCostPrice() * matchproduct.getQuantity() + getProfit());
         }
@@ -113,7 +128,8 @@ public class InventoryService {
         return getProfit();
     }
 
-//        getters and setters
+
+
 
     public Set<Product> getProductset() {
         return productset;

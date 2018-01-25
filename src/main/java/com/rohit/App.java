@@ -3,10 +3,9 @@ package com.rohit;
 import java.util.Scanner;
 
 /**
- * Hello world!
- *
+ * Inventory Management
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {

@@ -3,8 +3,9 @@ package com.rohit;
 import com.rohit.inventoryService.InventoryService;
 
 /**
- * Created by rohit on 1/24/2018.
+ * Util class for CRUD operations
  */
+
 public class Util {
     public void option(String option)
     {
