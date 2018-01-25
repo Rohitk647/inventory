@@ -1,4 +1,4 @@
-package com.rohit.inventoryService;
+package com.rohit.service;
 
 import com.rohit.models.Product;
 
@@ -10,7 +10,7 @@ import java.util.TreeSet;
  * Created by rohit on 1/24/2018.
  */
 
-public class InventoryService {
+public class ProductCatalogImpl implements InventoryService,ProductService,ReportService{
 
 
 
@@ -21,7 +21,7 @@ public class InventoryService {
 
 
     private static double profit;
-    private static long previousProfit=0;
+
 
     /**
      *   Adds products to the set
@@ -34,12 +34,16 @@ public class InventoryService {
         else {
             Product product = new Product(productName, Double.parseDouble(costPrice),Double.parseDouble(sellingPrice),getNoOfProducts());
             productset.add(product);
+            setNoOfProducts(0);
             return true;
         }
     }
 
+
     /**
-     *  Deletes products from the set
+     * Deletes products from the set
+     * @param productName
+     * @return
      */
 
     public boolean deleteProduct(String productName)
@@ -53,7 +57,10 @@ public class InventoryService {
     }
 
     /**
-     *  Increases the quantity of the products
+     * Increases the quantity of the products
+     * @param productName
+     * @param quantity
+     * @return
      */
 
     public boolean increaseQuantity(String productName,String quantity){
@@ -68,8 +75,12 @@ public class InventoryService {
         }
     }
 
+
     /**
-     *  Reduces the quantity of the products
+     * Reduces the quantity of the products
+     * @param productName
+     * @param quantity
+     * @return
      */
 
     public boolean reduceQuantity(String productName,String quantity){
@@ -86,7 +97,7 @@ public class InventoryService {
     }
 
     /**
-     *  Generating report and calculating profit
+     * Generates the report
      */
 
     public void report()
@@ -111,22 +122,19 @@ public class InventoryService {
         System.out.println(a+" "+b);
         System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("Total Value                                             "+i);
-        if(previousProfit==0)
-        {
-            System.out.println("Profit from previous report                             "+0.0);
-        }
-        else
-        {
-        System.out.println("Profit from previous report                             "+(previousProfit-(a-b)));
-        }
+
+        System.out.println("Profit from previous report                             "+(a-b));
+
         System.out.println();
-        previousProfit=a-b;
         setCostPrice(0);
+        setProfit(0);
     }
 
 
     /**
-     *  To get the required product by given name
+     * Get the product by name
+     * @param productName
+     * @return
      */
 
     private Product getProductByName(String productName)
@@ -141,7 +149,9 @@ public class InventoryService {
     }
 
     /**
-     *  This method calculates the cost price of the deleted products
+     * calculates the cost price of the deleted products
+     * @param productName
+     * @return
      */
 
     public double delProdCost(String productName){
@@ -158,6 +168,12 @@ public class InventoryService {
         return getCostPrice();
     }
 
+    /**
+     * Calculates the profit
+     * @param productName
+     * @param quantity
+     */
+
     public void calculateProfit(String productName,String quantity){
         Product matchproduct=getProductByName(productName);
         setProfit(((matchproduct.getSellingPrice()- matchproduct.getCostPrice())*Integer.parseInt(quantity))+getProfit());
@@ -170,7 +186,7 @@ public class InventoryService {
     }
 
     public static void setProductset(Set<Product> productset) {
-        InventoryService.productset = productset;
+        ProductCatalogImpl.productset = productset;
     }
     public long getNoOfProducts() {
         return noOfProducts;
@@ -184,7 +200,7 @@ public class InventoryService {
     }
 
     public static void setProfit(double profit) {
-        InventoryService.profit = profit;
+        ProductCatalogImpl.profit = profit;
     }
 
     public double getCostPrice() {

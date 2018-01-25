@@ -9,7 +9,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        Util util=new Util();
+        CommandInterpretor commandInterpretor=new CommandInterpretor();
         Scanner console = new Scanner(System.in);
         String command;
         System.out.println("Enter Input");
@@ -18,7 +18,7 @@ public class App
             if(command.equals("#"))
                 break;
             else {
-                util.option(command);
+                commandInterpretor.execute(command);
             }
         }
     }
