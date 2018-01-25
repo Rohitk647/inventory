@@ -2,7 +2,7 @@ package com.rohit.models;
 
 /**
  * Pojo class for Product
- * Created by rohit on 1/24/2018.
+ *
  */
 public class Product implements  Comparable<Product>{
 

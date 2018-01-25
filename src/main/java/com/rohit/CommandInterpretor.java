@@ -7,7 +7,7 @@ import com.rohit.service.ProductService;
 import com.rohit.service.ReportService;
 
 /**
- * CommandInterpretor class for CRUD operations
+ * CommandInterpretor class for performing required operations
  */
 
 public class CommandInterpretor {
