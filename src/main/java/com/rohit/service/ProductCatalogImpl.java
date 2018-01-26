@@ -43,7 +43,7 @@ public class ProductCatalogImpl implements InventoryService,ProductService,Repor
     /**
      * Deletes products from the set
      * @param productName
-     * @return
+     * @return boolean
      */
 
     public boolean deleteProduct(String productName)
@@ -60,7 +60,7 @@ public class ProductCatalogImpl implements InventoryService,ProductService,Repor
      * Increases the quantity of the products
      * @param productName
      * @param quantity
-     * @return
+     * @return boolean
      */
 
     public boolean increaseQuantity(String productName,String quantity){
@@ -80,7 +80,7 @@ public class ProductCatalogImpl implements InventoryService,ProductService,Repor
      * Reduces the quantity of the products
      * @param productName
      * @param quantity
-     * @return
+     * @return boolean
      */
 
     public boolean reduceQuantity(String productName,String quantity){
@@ -134,7 +134,7 @@ public class ProductCatalogImpl implements InventoryService,ProductService,Repor
     /**
      * Get the product by name
      * @param productName
-     * @return
+     * @return Product
      */
 
     private Product getProductByName(String productName)
@@ -151,7 +151,7 @@ public class ProductCatalogImpl implements InventoryService,ProductService,Repor
     /**
      * calculates the cost price of the deleted products
      * @param productName
-     * @return
+     * @return double
      */
 
     public double delProdCost(String productName){

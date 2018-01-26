@@ -10,21 +10,21 @@ public interface ProductService {
      * @param productName
      * @param costPrice
      * @param sellingPrice
-     * @return
+     * @return boolean
      */
     boolean createProduct(String productName, String costPrice, String sellingPrice);
 
     /**
      * To delete a product from the inventory
      * @param productName
-     * @return
+     * @return boolean
      */
     boolean deleteProduct(String productName);
 
     /**
      * To calculate cost price of deleted products
      * @param productName
-     * @return
+     * @return double
      */
     public double delProdCost(String productName);
 

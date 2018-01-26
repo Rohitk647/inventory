@@ -11,7 +11,7 @@ public interface InventoryService {
      * Increases the inventory of a product
      * @param productName
      * @param quantity
-     * @return
+     * @return boolean
      */
     boolean increaseQuantity(String productName, String quantity);
 
@@ -19,7 +19,7 @@ public interface InventoryService {
      *
      * @param productName
      * @param quantity
-     * @return
+     * @return boolean
      */
     boolean reduceQuantity(String productName, String quantity);
 
