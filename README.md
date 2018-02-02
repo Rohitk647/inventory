@@ -20,7 +20,7 @@ e) report
 	Whenever Mr. X wants to view his inventory list he issues the report command. This command should print the current inventory details in the specified format sorted by alphabetical order. Apart from printing the inventory it has to report on the profit made by Mr. X since last report generation.
 
 
-SAMPLE SCENARIO:
+**SAMPLE SCENARIO:
 
 create Book01 10.50 13.79
 
@@ -46,7 +46,7 @@ updateSell Food01 1
 
 updateSell Tab01 2
 
-report
+report**
 
 EXPECTED OUTPUT:
 
