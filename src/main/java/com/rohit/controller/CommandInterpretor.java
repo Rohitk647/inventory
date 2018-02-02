@@ -1,4 +1,4 @@
-package com.rohit;
+package com.rohit.controller;
 
 import com.rohit.Util.ServiceFactory;
 import com.rohit.service.InventoryService;
