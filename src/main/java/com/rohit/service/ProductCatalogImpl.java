@@ -10,7 +10,7 @@ import java.util.TreeSet;
  * This class implements the Crud operations and generates inventory report
  */
 
-public class ProductCatalogImpl implements InventoryService, ProductService, ReportService {
+public class ProductCatalogImpl implements InventoryService, ProductService {
 
 
     private static Set<Product> productset = InventoryDaoFactory.getFactory()
@@ -99,39 +99,6 @@ public class ProductCatalogImpl implements InventoryService, ProductService, Rep
             return true;
         }
     }
-
-    /**
-     * Generates the report
-     */
-
-    public void report() {
-        Set<Product> printReport = getProductset();
-        double i = 0;
-        long a = 0;
-        long b = 0;
-
-        System.out.println("           " + "INVENTORY REPORT");
-        System.out.println("Item Name" + "    " + "Bought At" + "    " + "Sold At" + "   " + "AvailableQty" + "  " + "Value");
-        System.out.println("---------" + "    " + "---------" + "    " + "-------" + "   " + "------------" + "  " + "-----");
-
-
-        for (Product product : printReport) {
-            i = i + ((product.getCostPrice()) * (product.getQuantity()));
-            System.out.println(product.getProductName() + "        " + product.getCostPrice() + "         " + product.getSellingPrice() + "          " + product.getQuantity() + "          " + ((product.getCostPrice()) * (product.getQuantity())));
-        }
-        a = a + (long) getProfit();
-        b = b + (long) getCostPrice();
-        System.out.println(a + " " + b);
-        System.out.println("-----------------------------------------------------------------------------------------------------");
-        System.out.println("Total Value                                             " + i);
-
-        System.out.println("Profit from previous report                             " + (a - b));
-
-        System.out.println();
-        setCostPrice(0);
-        setProfit(0);
-    }
-
 
     /**
      * Get the product by name

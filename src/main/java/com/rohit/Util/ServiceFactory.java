@@ -4,6 +4,7 @@ import com.rohit.service.InventoryService;
 import com.rohit.service.ProductCatalogImpl;
 import com.rohit.service.ProductService;
 import com.rohit.service.ReportService;
+import com.rohit.view.Report;
 
 /**
  *
@@ -11,6 +12,7 @@ import com.rohit.service.ReportService;
 public class ServiceFactory {
 
     private ProductCatalogImpl productCatalogService =new ProductCatalogImpl();
+    private Report report=new Report();
 
     static private ServiceFactory instance = null ;
     private ServiceFactory() {
@@ -27,7 +29,7 @@ public class ServiceFactory {
     }
 
     public ReportService getReportService() {
-        return productCatalogService;
+        return report;
     }
 
     public InventoryService getInventoryService() {
