@@ -1,6 +1,7 @@
 package com.rohit;
 
 import com.rohit.controller.CommandInterpretor;
+import com.rohit.error.InvalidNumberException;
 
 import java.util.Scanner;
 
@@ -20,7 +21,11 @@ public class App
             if(command.equals("#"))
                 break;
             else {
-                commandInterpretor.execute(command);
+                try {
+                    commandInterpretor.execute(command);
+                } catch (InvalidNumberException e) {
+                    System.out.println(e);
+                }
             }
         }
     }

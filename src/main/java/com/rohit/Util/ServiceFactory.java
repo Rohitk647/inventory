@@ -6,9 +6,7 @@ import com.rohit.service.ProductService;
 import com.rohit.service.ReportService;
 import com.rohit.view.Report;
 
-/**
- *
- */
+
 public class ServiceFactory {
 
     private ProductCatalogImpl productCatalogService =new ProductCatalogImpl();

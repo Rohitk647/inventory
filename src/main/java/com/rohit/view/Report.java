@@ -7,7 +7,7 @@ import com.rohit.service.ReportService;
 import java.util.Set;
 
 /**
- * Created by rohit on 2/2/2018.
+ * Generates Report
  */
 public class Report implements ReportService{
     ProductCatalogImpl productCatalog=new ProductCatalogImpl();
