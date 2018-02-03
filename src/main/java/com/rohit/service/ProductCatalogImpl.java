@@ -8,7 +8,6 @@ import java.util.TreeSet;
 
 /**
  * This class implements the Crud operations and generates inventory report
- *
  */
 
 public class ProductCatalogImpl implements InventoryService, ProductService, ReportService {

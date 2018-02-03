@@ -4,6 +4,7 @@ package com.rohit.dao;
  *  Factory for DAO
  */
 public class InventoryDaoFactory {
+
     public InventoryDAO getInventoryDAO() {
         return inventoryDAO;
     }
