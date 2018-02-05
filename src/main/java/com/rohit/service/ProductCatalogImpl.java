@@ -101,8 +101,25 @@ public class ProductCatalogImpl implements InventoryService, ProductService {
     }
 
     /**
+     * Modify the selling price of teh specified product
+     * @param productName
+     * @param sellingPrice
+     * @return
+     */
+    public boolean changeSellingPrice(String productName, String sellingPrice) {
+        if (productName == null || sellingPrice == null) {
+            return false;
+        } else {
+            Product matchproduct = getProductByName(productName);
+            setNoOfProducts(matchproduct.getQuantity());
+            deleteProduct(productName);
+            createProduct(productName,String.valueOf(matchproduct.getCostPrice()),sellingPrice);
+            return true;
+        }
+    }
+
+    /**
      * Get the product by name
-     *
      * @param productName
      * @return Product
      */

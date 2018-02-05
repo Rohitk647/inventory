@@ -28,7 +28,6 @@ public class Report implements ReportService{
         }
         a = a + (long) productCatalog.getProfit();
         b = b + (long) productCatalog.getCostPrice();
-        System.out.println(a + " " + b);
         System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("Total Value                                             " + i);
 

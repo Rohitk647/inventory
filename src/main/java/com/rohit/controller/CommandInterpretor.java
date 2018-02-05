@@ -31,6 +31,10 @@ public class CommandInterpretor {
             if(Integer.parseInt(operation[2])<0){throw new InvalidNumberException("number cannot be negative "+operation[2]);}
             inventoryService.reduceQuantity(operation[1],operation[2]);
         }
+        else if(operation[0].equals("updatesellprice")){
+            if(Integer.parseInt(operation[2])<0){throw new InvalidNumberException("number cannot be negative "+operation[2]);}
+            inventoryService.changeSellingPrice(operation[1],operation[2]);
+        }
         else if(operation[0].equals("delete")){
             productService.delProdCost(operation[1]);
             productService.deleteProduct(operation[1]);
