@@ -1,7 +1,7 @@
 # inventory
 Inventory management system to manage inventory
 
-The following are the list of operations that can be performed 
+Following are the list of operations that can be performed 
 
 
 a) createitemNamecostPricesellingPrice
